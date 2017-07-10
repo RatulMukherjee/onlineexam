@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Skytel Online Exam</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+  </head>
+  <body>
+   <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#"><img src="logo.png" alt="Unsplashed background img 1"></a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+	<section class="parallax img-responsive">
+	<div class="clear-fix">
+	<p>&nbsp;</p>
+	</div>
+	<div class="clear-fix">
+	<p>&nbsp;</p>
+	</div>
+	 <div class="container mgtop">
+	<div class="row">
+	<div class="col-md-12 col-sm-12 col-xs-12 center">
+            	<div class="container">
+        <br><br>
+		 <div class="row center">
+          <h2 class="header" style="color:black; font-size:50px; ">Sky Exam</h5>
+        </div>
+        <div class="row center">
+          <h2 class="header" style="color:white; font-size:40px; ">Online Examination System</h5>
+        </div>
+		 <br><br>
+
+        <br><br>
+
+      </div>
+            </div>
+	  </section>
+
+	  <div class="container">
+	  <div class="row">
+	   <div class="register-box">
+	   <div class="register-box-body">
+	   <div class="row center">
+          <h2 class="header" style="color:#e71f23 !important; font-size:30px; ">Questions</h5>
+        </div>
+		<div class="row row center">
+		 <div class="col-xs-12 col-md-12 col-centered">
+		 <form id="form">
+		</form>
+
+		 </div>
+        </div>
+	   </div>
+	   </div>
+
+
+				  </div>
+				  </div>
+      </div>
+	  </div>
+	  <!-- Footer -->
+	<footer style="background-color:#000000">
+	<div class="container">
+    <hr>
+        <div class="text-center center-block">
+
+            <br />
+                <div class="container">
+       <p class="text-muted" style="color:#ffffff; font-size:30px;">Skytel Online Examination </p><a href="#" title="Scroll to top"><i class="glyphicon glyphicon-chevron-up"></i></a>
+
+       </div>
+      </div>
+	  <hr>
+		</div>
+
+	</footer>
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script>
+  $(document).ready(function(){
+        //console.log(localStorage.getItem("eid"));
+        $.ajax({
+          url: "../app/questions.php",
+          method:"get",
+          data:{
+            limit:2,
+            eid:localStorage.getItem("eid")
+          },
+          success: function(res){
+            //console.log(res);
+            var obj = JSON.parse(res);
+            for(i=0; i<obj.length; i++ )
+            {
+              var j = i;
+              //$("#form").append('<input type= "hidden" name= "qid" value= "'+obj[i].qid+'" >');
+              $("#from").append('<div class="row center"><div class="form-group has-feedback" style="color:black;font-size:20px;">');
+              $("#form").append('  <p> <label> ' +(++j)+")" + obj[i].question +    ' </label>');
+              // $("#form").append('<label class="radio-inline"><input type="radio" name="' +obj[i].qid + '" value="'+obj[i].option1'">"'+obj[i].option1'"</label>');
+              // $("#form").append('<label class="radio-inline">'+
+          		// 	 '<input type="radio" name="' +obj[i].qid + '" value="'+obj[i].option2+">"+ obj[i].option2+'</label>');
+              // $("#form").append('<label class="radio-inline">'+
+           	// 		  '<input type="radio" name="' +obj[i].qid + '" value="'+obj[i].option3+">"+ obj[i].option3+'</label>');
+              // $("#form").append('<label class="radio-inline">'+
+              //     '<input type="radio" name="' +obj[i].qid + '" value="'+obj[i].option4+">"+ obj[i].option4+'</label>');
+              // $("#form").append('  </div></div>');
+              $("#form").append(' <br/>  <input type= "radio" name= "' +obj[i].qid + ' " value= "'+obj[i].option1+'"> ' + obj[i].option1  );
+              $("#form").append(' <br/> <input type= "radio" name= "' +obj[i].qid + ' " value= "'+obj[i].option2+'"> ' + obj[i].option2  );
+              $("#form").append(' <br/> <input type= "radio" name= "' +obj[i].qid + ' " value= "'+obj[i].option3+'"> ' + obj[i].option3  );
+              $("#form").append('  <br/> <input type= "radio" name= "' +obj[i].qid + ' " value= "'+obj[i].option4+'"> ' + obj[i].option4  );
+                }
+                $("#form").append('  <div class="row"><div class="col-xs-12 text-right" style="margin-bottom:10px;"></div><div class="row center">');
+                $("#form").append('<input type="submit" name="submit" value="Submit"  tabindex="4" class="btn btn-danger btn-flat" style="width:150px;">');
+                //$("#form").append('<br/> <input type= "submit" name= "submit" value="submit"  >');
+                $("#form").append('</div></div>');
+              }});
+      });
+
+      $("#form").submit(function(e){
+          e.preventDefault();
+          var dataString = $("#form").serializeArray();
+          var examinee_id = localStorage.getItem('eid');
+          $.ajax({
+            url: "../app/resulteval.php",
+            method:"POST",
+            data: {
+              answer: dataString,
+              examinee: examinee_id
+            },
+            success: function(res){
+            location.href="result.html";
+            }
+          });
+      });
+  </script>
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+
+  </body>
+</html>
